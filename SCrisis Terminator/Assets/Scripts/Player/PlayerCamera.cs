@@ -30,7 +30,6 @@ public class PlayerCamera : MonoBehaviour
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             player.rotation = Quaternion.Euler(0, yRotation, 0);
         }
-        Debug.Log(Cursor.visible);
     }
 
     // LateUpdate is usually synonomous with camera movement handling

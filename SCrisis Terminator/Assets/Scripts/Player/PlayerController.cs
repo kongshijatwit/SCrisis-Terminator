@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         Vector3 moveDir = gameObject.transform.forward * vInput + gameObject.transform.right * hInput;
-        rb.AddForce(speed * Time.fixedDeltaTime * moveDir.normalized);
+        rb.AddForce(speed * Time.fixedDeltaTime * moveDir.normalized, ForceMode.Force);
     }
 
     private void SpeedControl()
@@ -45,14 +45,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new(maxVelX, 0, maxVelZ);
     }
 
-    private void StopMoving()
-    {
-        canMove = false;
+    private void StopMoving() => canMove = false;
 
-    }
-
-    private void StartMoving()
-    {
-        canMove = true;
-    }
+    private void StartMoving() => canMove = true;
 }
