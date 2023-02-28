@@ -6,7 +6,7 @@ public class Interactable : MonoBehaviour
     private IInteractable interactable;
     private bool inRange;
 
-    private void Start()
+    protected virtual void Start()
     {
         interactable = GetComponent<IInteractable>();
         inRange = false;
