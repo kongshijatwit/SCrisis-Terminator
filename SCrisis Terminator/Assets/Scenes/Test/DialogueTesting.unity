@@ -876,6 +876,7 @@ GameObject:
   - component: {fileID: 1071277712}
   - component: {fileID: 1071277711}
   - component: {fileID: 1071277710}
+  - component: {fileID: 1071277715}
   m_Layer: 0
   m_Name: James
   m_TagString: Untagged
@@ -975,6 +976,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: -81.41, z: 0}
+--- !u!114 &1071277715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071277708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c6281dc9d05b840875857e0e7d76de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogControl: {fileID: 77029141}
+  dialogue: {fileID: 11400000, guid: e39ea8fb59b85864a9e2711128476b6c, type: 2}
 --- !u!1 &1137702429
 GameObject:
   m_ObjectHideFlags: 0

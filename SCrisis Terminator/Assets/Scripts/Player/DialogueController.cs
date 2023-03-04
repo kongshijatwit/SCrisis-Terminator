@@ -25,7 +25,6 @@ public class DialogueController : MonoBehaviour
         currentDialogueBase = dialogue.GetNext();
         if (currentDialogueBase == null) 
         {
-            Debug.Log("hi");
             EndConversation();
             return; 
         }
