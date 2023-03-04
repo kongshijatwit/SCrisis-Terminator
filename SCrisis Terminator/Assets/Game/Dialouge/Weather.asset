@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79f72916db52f584591b16916331239d, type: 3}
+  m_Name: Weather
+  m_EditorClassIdentifier: 
+  dialogues:
+  - name: Player
+    sentence: How's the weather?
+  - name: NPC
+    sentence: Pretty okay right now.
+  - name: NPC
+    sentence: Can say the same about tomorrow.
+  - name: Player
+    sentence: Is it bad?
+  - name: NPC
+    sentence: Who knows.
