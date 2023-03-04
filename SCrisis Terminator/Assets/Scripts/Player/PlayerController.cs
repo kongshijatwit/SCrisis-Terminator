@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
         {
             hInput = Input.GetAxis("Horizontal");
             vInput = Input.GetAxis("Vertical");
-            SpeedControl();
+            
         }
     }
 
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 moveDir = gameObject.transform.forward * vInput + gameObject.transform.right * hInput;
         rb.AddForce(speed * Time.fixedDeltaTime * moveDir.normalized, ForceMode.Force);
+        SpeedControl();
     }
 
     private void SpeedControl()
