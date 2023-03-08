@@ -23,27 +23,16 @@ public class PlayerController : MonoBehaviour
         {
             hInput = Input.GetAxis("Horizontal");
             vInput = Input.GetAxis("Vertical");
-            
         }
     }
 
     private void FixedUpdate()
     {
-        MovePlayer();
-    }
-
-    private void MovePlayer()
-    {
+        float clampX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
+        float clampZ = Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed);
         Vector3 moveDir = gameObject.transform.forward * vInput + gameObject.transform.right * hInput;
-        rb.AddForce(speed * Time.fixedDeltaTime * moveDir.normalized, ForceMode.Force);
-        SpeedControl();
-    }
-
-    private void SpeedControl()
-    {
-        float maxVelX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
-        float maxVelZ = Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed);
-        rb.velocity = new(maxVelX, 0, maxVelZ);
+        if (canMove) rb.AddForce(speed * Time.fixedDeltaTime * moveDir);
+        rb.velocity = new(clampX, 0, clampZ);
     }
 
     private void StopMoving() => canMove = false;

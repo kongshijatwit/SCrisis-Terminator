@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975eab916a1b3a0498734eb5b282258f, type: 3}
+  m_Name: root_1
+  m_EditorClassIdentifier: 
+  name: NPC
+  sentence: All I know is that you're supposed to keep their body temperature cool.
+  children:
+  - {fileID: 11400000, guid: 413fe58e938b9a54d8552bb8c8ce2f06, type: 2}

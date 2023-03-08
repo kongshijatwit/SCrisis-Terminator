@@ -1,45 +1,48 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueController : MonoBehaviour
 {
-    private Dialogue dialogue;
-    private DialogueElement currentDialogueBase;
+    private DialogueElement rootDialogueBase = null;
+    private bool isChoosing = false;
+    private bool isTalking = false;
 
-    public event Action OnConversationStarted;
-    public event Action OnSentenceChanged;
-    public event Action OnConversationEnded;
+    public event Action OnConversationStarted = delegate { };
+    public event Action OnSentenceChanged = delegate { };
+    public event Action OnConversationEnded = delegate { };
 
-    private bool isDone = false;
-
-    public void StartDialogue(Dialogue newDialogue)
+    public void StartDialogue(DialogueElement newDialogue)
     {
-        dialogue = newDialogue;
-        currentDialogueBase = dialogue.GetBeginning();
-        isDone = false;
+        rootDialogueBase = newDialogue;
+        isTalking = true;
         OnConversationStarted();
     }
 
     public void AdvanceDialogue()
     {
-        currentDialogueBase = dialogue.GetNext();
-        if (currentDialogueBase == null) 
+        if (rootDialogueBase == null || rootDialogueBase.Children.Length < 1) 
         {
-            EndConversation();
+            EndDialogue();
             return; 
         }
+        if (rootDialogueBase.Children.Length > 1) { isChoosing = true; }
+        else if (rootDialogueBase.Children.Length == 1) { isChoosing = false; }
+        rootDialogueBase = rootDialogueBase.Children[UnityEngine.Random.Range(0, rootDialogueBase.Children.Length)];
         OnSentenceChanged();
     }
 
-    public void EndConversation()
+    private void EndDialogue()
     {
-        isDone = true;
         OnConversationEnded();
+        isTalking = false;
     }
 
-    public string GetName() => currentDialogueBase.Name;
+    public DialogueElement GetNode() => rootDialogueBase;
 
-    public string GetCurrentSentence() => currentDialogueBase.Sentence;
+    public IEnumerable<DialogueElement> GetAllNodes() => rootDialogueBase.Children;
 
-    public bool GetStatus() => isDone;
+    public bool GetChoosingStatus() => isChoosing;
+
+    public bool GetTalkingStatus() => isTalking;
 }

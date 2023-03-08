@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class NPCDialogue : Interactable, IInteractable
 {
     [SerializeField] private DialogueController dialogControl;
-    [SerializeField] private Dialogue dialogue;
+    [SerializeField] private DialogueElement rootDialogue;
     private bool isInteracting = false;
 
     public void Interact()
@@ -14,14 +12,14 @@ public class NPCDialogue : Interactable, IInteractable
         {
             if (!isInteracting)
             {
-                dialogControl.StartDialogue(dialogue);
+                dialogControl.StartDialogue(rootDialogue);
                 isInteracting = true;
             }
             else if (isInteracting)
             {
                 dialogControl.AdvanceDialogue();
             }
-            if (dialogControl.GetStatus())
+            if (!dialogControl.GetTalkingStatus())
             {
                 isInteracting = false;
             }

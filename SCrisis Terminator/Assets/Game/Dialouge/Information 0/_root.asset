@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 975eab916a1b3a0498734eb5b282258f, type: 3}
+  m_Name: _root
+  m_EditorClassIdentifier: 
+  name: Player
+  sentence: Hey. I'm here to ask if you know anything about Sickle Cell Anemia.
+  children:
+  - {fileID: 11400000, guid: 13af1198d63c51945a3b924587fb5f10, type: 2}

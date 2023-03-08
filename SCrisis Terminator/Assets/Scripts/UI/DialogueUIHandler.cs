@@ -25,8 +25,8 @@ public class DialogueUIHandler : MonoBehaviour
 
     private void UpdateUI()
     {
-        nameField.text = dialogue.GetName();
-        sentenceField.text = dialogue.GetCurrentSentence();
+        nameField.text = dialogue.GetNode().Name;
+        sentenceField.text = dialogue.GetNode().Sentence;
     }
 
     private void DropUI()
