@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
+    private DialogueController dc;
 
     private readonly float speed = 700f;
     private readonly float maxSpeed = 2.5f;
@@ -13,7 +14,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        dc = GetComponent<DialogueController>();
         rb = GetComponent<Rigidbody>();
+        dc.OnConversationStarted += StopMoving;
+        dc.OnConversationEnded += StartMoving;
         canMove = true;
     }
 
@@ -38,4 +42,10 @@ public class PlayerController : MonoBehaviour
     private void StopMoving() => canMove = false;
 
     private void StartMoving() => canMove = true;
+
+    private void OnDisable()
+    {
+        dc.OnConversationStarted -= StopMoving;
+        dc.OnConversationEnded -= StartMoving;
+    }
 }
