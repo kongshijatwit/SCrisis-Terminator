@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
     private readonly float speed = 700f;
     private readonly float maxSpeed = 2.5f;
 
-    private bool canMove;
     private float hInput;
     private float vInput;
 
@@ -18,12 +17,12 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         dc.OnConversationStarted += StopMoving;
         dc.OnConversationEnded += StartMoving;
-        canMove = true;
+        rb.isKinematic = false;
     }
 
     void Update()
     {
-        if (canMove)
+        if (!rb.isKinematic)
         {
             hInput = Input.GetAxis("Horizontal");
             vInput = Input.GetAxis("Vertical");
@@ -35,13 +34,19 @@ public class PlayerController : MonoBehaviour
         float clampX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
         float clampZ = Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed);
         Vector3 moveDir = gameObject.transform.forward * vInput + gameObject.transform.right * hInput;
-        if (canMove) rb.AddForce(speed * Time.fixedDeltaTime * moveDir);
+        rb.AddForce(speed * Time.fixedDeltaTime * moveDir);
         rb.velocity = new(clampX, 0, clampZ);
     }
 
-    private void StopMoving() => canMove = false;
+    private void StopMoving()
+    {
+        rb.isKinematic = true;
+    }
 
-    private void StartMoving() => canMove = true;
+    private void StartMoving()
+    {
+        rb.isKinematic = false;
+    }
 
     private void OnDisable()
     {
