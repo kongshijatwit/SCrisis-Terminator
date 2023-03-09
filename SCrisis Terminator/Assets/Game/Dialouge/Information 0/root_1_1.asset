@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975eab916a1b3a0498734eb5b282258f, type: 3}
   m_Name: root_1_1
   m_EditorClassIdentifier: 
-  name: NPC
+  name: David
   sentence: Not too hot. Not too cold.
   children:
   - {fileID: 11400000, guid: e3949243a9df4ac468401627b87ada51, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975eab916a1b3a0498734eb5b282258f, type: 3}
   m_Name: root_1_1_1_1
   m_EditorClassIdentifier: 
-  name: NPC
+  name: David
   sentence: Yeah, but you can ask the other people too. They might know something.
-  children: []
+  children:
+  - {fileID: 11400000, guid: fe72c8fb26978c54bb886631fdbd6cc9, type: 2}

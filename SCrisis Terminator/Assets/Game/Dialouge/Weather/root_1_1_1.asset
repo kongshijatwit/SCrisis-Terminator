@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975eab916a1b3a0498734eb5b282258f, type: 3}
   m_Name: root_1_1_1
   m_EditorClassIdentifier: 
-  name: NPC
+  name: James
   sentence: Who knows?
   children: []

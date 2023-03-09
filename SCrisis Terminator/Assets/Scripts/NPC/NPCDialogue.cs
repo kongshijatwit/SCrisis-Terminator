@@ -1,25 +1,25 @@
 using UnityEngine;
 
-public class NPCDialogue : Interactable, IInteractable
+public class NPCDialogue : MonoBehaviour, IRaycastable
 {
-    [SerializeField] private DialogueController dialogControl;
     [SerializeField] private DialogueElement rootDialogue;
     private bool isInteracting = false;
 
-    public void Interact()
+    public void HandleRaycast(PlayerRaycast player)
     {
+        var dialogueController = player.GetComponent<DialogueController>();
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (!isInteracting)
             {
-                dialogControl.StartDialogue(rootDialogue);
+                dialogueController.StartDialogue(rootDialogue);
                 isInteracting = true;
             }
             else if (isInteracting)
             {
-                dialogControl.AdvanceDialogue();
+                dialogueController.AdvanceDialogue();
             }
-            if (!dialogControl.GetTalkingStatus())
+            if (!dialogueController.GetTalkingStatus())
             {
                 isInteracting = false;
             }
