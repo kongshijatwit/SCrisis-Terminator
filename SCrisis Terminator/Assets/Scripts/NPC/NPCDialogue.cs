@@ -8,21 +8,23 @@ public class NPCDialogue : MonoBehaviour, IRaycastable
     public void HandleRaycast(PlayerRaycast player)
     {
         var dialogueController = player.GetComponent<DialogueController>();
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E)) HandleInteraction(dialogueController);
+    }
+
+    private void HandleInteraction(DialogueController dialogueController)
+    {
+        if (!isInteracting)
         {
-            if (!isInteracting)
-            {
-                dialogueController.StartDialogue(rootDialogue);
-                isInteracting = true;
-            }
-            else if (isInteracting)
-            {
-                dialogueController.AdvanceDialogue();
-            }
-            if (!dialogueController.GetTalkingStatus())
-            {
-                isInteracting = false;
-            }
+            dialogueController.StartDialogue(rootDialogue);
+            isInteracting = true;
+        }
+        else if (isInteracting)
+        {
+            dialogueController.AdvanceDialogue();
+        }
+        if (!dialogueController.GetTalkingStatus())
+        {
+            isInteracting = false;
         }
     }
 }
