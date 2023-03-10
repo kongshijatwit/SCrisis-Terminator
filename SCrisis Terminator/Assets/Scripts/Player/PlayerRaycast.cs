@@ -12,6 +12,8 @@ public class PlayerRaycast : MonoBehaviour
         {
             hit.transform.GetComponent<IRaycastable>().HandleRaycast(this);
         }
+
+        // Draws a ray in the scene view - remember to turn on gizmos
         Debug.DrawRay(origin, direction * rayDistance, Color.red);
     }
 }
