@@ -3,16 +3,18 @@ using UnityEngine;
 public class NPCDialogue : MonoBehaviour, IRaycastable
 {
     [SerializeField] private DialogueElement rootDialogue;
+    [SerializeField] private KeyCode interactionKey = KeyCode.E;
     private bool isConversing = false;
 
     public void HandleRaycast(PlayerRaycast player)
     {
         // Show tooltip
-        Debug.Log("Display: Press E to speak");
+        Debug.Log($"Display: Press {interactionKey} to speak");
+
 
         // Dialogue
         var dialogueController = player.GetComponent<DialogueController>();
-        if (Input.GetKeyDown(KeyCode.E)) HandleDialogue(dialogueController);
+        if (Input.GetKeyDown(interactionKey)) HandleDialogue(dialogueController);
     }
 
     private void HandleDialogue(DialogueController dialogueController)

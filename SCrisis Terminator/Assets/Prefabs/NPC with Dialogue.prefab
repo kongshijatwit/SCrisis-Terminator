@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 1330945118351003063}
   - component: {fileID: 6033473146589016000}
   - component: {fileID: 4680849833105982185}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: NPC with Dialogue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -144,3 +144,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rootDialogue: {fileID: 0}
+  interactionKey: 101

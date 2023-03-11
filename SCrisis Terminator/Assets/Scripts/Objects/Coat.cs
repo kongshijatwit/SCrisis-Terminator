@@ -9,6 +9,7 @@ public class Coat : MonoBehaviour, IRaycastable
         // Tooltip
         Debug.Log($"Display: Press {interactionKey} to pickup");
 
+
         // Pickup Logic
         if(Input.GetKeyDown(interactionKey))
         {
