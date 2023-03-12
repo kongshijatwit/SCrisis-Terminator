@@ -4,7 +4,7 @@ using System;
 public class PickupManager : MonoBehaviour
 {
     public static PickupManager instance;
-    
+
     [SerializeField] private GameObject pickup = null;
     public event Action UpdatePickup = delegate { };
 
@@ -13,9 +13,11 @@ public class PickupManager : MonoBehaviour
         instance = this;
     }
 
-    public void SetPickup(GameObject newPickup)
+    public void SetPickup(GameObject newPickup, bool status)
     {
-        pickup = newPickup;
+        if (status) { pickup = newPickup; }
+        else { pickup = null; }
+        newPickup.GetComponent<MeshRenderer>().enabled = !status;
         UpdatePickup();
     }
 }
