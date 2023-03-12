@@ -26,8 +26,18 @@ public class DialogueController : MonoBehaviour
             EndDialogue();
             return; 
         }
-        if (rootDialogueBase.Children.Length > 1) { isChoosing = true; }
-        else if (rootDialogueBase.Children.Length == 1) { isChoosing = false; }
+        if (rootDialogueBase.Children.Length > 1) 
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+            isChoosing = true;
+            OnSentenceChanged();
+            return;
+        }
+        else if (rootDialogueBase.Children.Length == 1) 
+        {
+            isChoosing = false;
+        }
         rootDialogueBase = rootDialogueBase.Children[UnityEngine.Random.Range(0, rootDialogueBase.Children.Length)];
         OnSentenceChanged();
     }
@@ -36,6 +46,15 @@ public class DialogueController : MonoBehaviour
     {
         OnConversationEnded();
         isTalking = false;
+    }
+
+    public void SelectChoice(DialogueElement node)
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        rootDialogueBase = node;
+        isChoosing = false;
+        OnSentenceChanged();
     }
 
     public DialogueElement GetNode() => rootDialogueBase;

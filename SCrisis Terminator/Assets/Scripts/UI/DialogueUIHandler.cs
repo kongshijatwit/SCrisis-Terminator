@@ -1,12 +1,18 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class DialogueUIHandler : MonoBehaviour
 {
+    [SerializeField] private DialogueController dialogue;
     private Animator anim;
-    public DialogueController dialogue;
-    public TextMeshProUGUI nameField;
-    public TextMeshProUGUI sentenceField;
+
+    [SerializeField] private GameObject dialogueCanvas;
+    [SerializeField] private TextMeshProUGUI nameField;
+    [SerializeField] private TextMeshProUGUI sentenceField;
+
+    [SerializeField] private GameObject choiceCanvas;
+    [SerializeField] private Button buttonPrefab;
 
     private void Awake()
     {
@@ -25,13 +31,37 @@ public class DialogueUIHandler : MonoBehaviour
 
     private void UpdateUI()
     {
-        nameField.text = dialogue.GetNode().Name;
-        sentenceField.text = dialogue.GetNode().Sentence;
+        dialogueCanvas.SetActive(!dialogue.GetChoosingStatus());
+        choiceCanvas.SetActive(dialogue.GetChoosingStatus());
+
+        if(choiceCanvas.activeSelf)
+        {
+            BuildChoiceList();
+        }
+        else
+        {
+            nameField.text = dialogue.GetNode().Name;
+            sentenceField.text = dialogue.GetNode().Sentence;
+        }
     }
 
     private void DropUI()
     {
         anim.SetBool("IsTalking", false);
+    }
+
+    private void BuildChoiceList()
+    {
+        foreach(Transform t in choiceCanvas.transform)
+        {
+            Destroy(t.gameObject);
+        }
+        foreach(DialogueElement node in dialogue.GetAllNodes())
+        {
+            Button choiceButton = Instantiate(buttonPrefab, choiceCanvas.transform);
+            choiceButton.GetComponentInChildren<TextMeshProUGUI>().text = node.Sentence;
+            choiceButton.onClick.AddListener(() => { dialogue.SelectChoice(node); });
+        }
     }
 
     private void OnDisable()
