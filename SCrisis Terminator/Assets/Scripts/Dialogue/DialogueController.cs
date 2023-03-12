@@ -38,11 +38,11 @@ public class DialogueController : MonoBehaviour
         {
             isChoosing = false;
         }
-        rootDialogueBase = rootDialogueBase.Children[UnityEngine.Random.Range(0, rootDialogueBase.Children.Length)];
+        rootDialogueBase = rootDialogueBase.Children[0];
         OnSentenceChanged();
     }
 
-    private void EndDialogue()
+    public void EndDialogue()
     {
         OnConversationEnded();
         isTalking = false;

@@ -5,11 +5,11 @@ using UnityEngine;
 /// </summary>
 public class NPCDialogue : MonoBehaviour, IRaycastable
 {
-    [SerializeField] private DialogueElement rootDialogue;
-    [SerializeField] private KeyCode interactionKey = KeyCode.E;
-    private bool isConversing = false;
+    [SerializeField] protected DialogueElement rootDialogue;
+    [SerializeField] protected KeyCode interactionKey = KeyCode.E;
+    protected bool isConversing = false;
 
-    public void HandleRaycast(PlayerRaycast player)
+    public virtual void HandleRaycast(PlayerRaycast player)
     {
         // Show tooltip
         Debug.Log($"Display: Press {interactionKey} to speak");

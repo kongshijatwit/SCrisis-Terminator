@@ -5,7 +5,7 @@ public class PickupManager : MonoBehaviour
 {
     public static PickupManager instance;
 
-    [SerializeField] private GameObject pickup = null;
+    public GameObject pickup = null;
     public event Action UpdatePickup = delegate { };
 
     private void Awake() 
