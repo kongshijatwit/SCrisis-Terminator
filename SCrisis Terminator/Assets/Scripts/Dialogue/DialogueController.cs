@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DialogueController : MonoBehaviour
 {
-    private DialogueElement rootDialogueBase = null;
+    private DialogueElement currentDialogue = null;
     private bool isChoosing = false;
     private bool isTalking = false;
 
@@ -14,31 +14,39 @@ public class DialogueController : MonoBehaviour
 
     public void StartDialogue(DialogueElement newDialogue)
     {
-        rootDialogueBase = newDialogue;
+        currentDialogue = newDialogue;
         isTalking = true;
         OnConversationStarted();
     }
 
     public void AdvanceDialogue()
     {
-        if (rootDialogueBase == null || rootDialogueBase.Children.Length < 1) 
+        // Handles null exception and when there are zero nodes in children
+        if (currentDialogue == null || currentDialogue.Children.Length < 1) 
         {
             EndDialogue();
             return; 
         }
-        if (rootDialogueBase.Children.Length > 1) 
+
+        // Decides when to initiate the choosing state
+        if (currentDialogue.Children.Length > 1) 
         {
+            // Unlock cursor so player can select the choices
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             isChoosing = true;
             OnSentenceChanged();
             return;
         }
-        else if (rootDialogueBase.Children.Length == 1) 
+
+        // If it's just one child, safe to assume player is not choosing anything
+        else if (currentDialogue.Children.Length == 1) 
         {
             isChoosing = false;
         }
-        rootDialogueBase = rootDialogueBase.Children[0];
+
+        // Advance node index and call changed event
+        currentDialogue = currentDialogue.Children[0];
         OnSentenceChanged();
     }
 
@@ -50,18 +58,24 @@ public class DialogueController : MonoBehaviour
 
     public void SelectChoice(DialogueElement node)
     {
+        // Re-lock the cursor to regain first person environment
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        rootDialogueBase = node;
+
+        // Make sure to reset boolean so that next AdvanceDialogue call doesn't break UI
+        currentDialogue = node;
         isChoosing = false;
         OnSentenceChanged();
     }
 
-    public DialogueElement GetNode() => rootDialogueBase;
-
-    public IEnumerable<DialogueElement> GetAllNodes() => rootDialogueBase.Children;
-
+    
+    #region Getters
+	public DialogueElement GetNode() => currentDialogue;
+	
+    public IEnumerable<DialogueElement> GetAllNodes() => currentDialogue.Children;
+	
     public bool GetChoosingStatus() => isChoosing;
-
+	
     public bool GetTalkingStatus() => isTalking;
+    #endregion
 }

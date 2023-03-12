@@ -6,14 +6,17 @@ using UnityEngine;
 /// </summary>
 public class PlayerCamera : MonoBehaviour
 {
+    // Player fields and offset to set camera position
     [SerializeField] private Transform player;
     private DialogueController dc;
     private readonly Vector3 offset = new(0, 1f, 0);
 
+    // Mouse movement and sensitivity
     private bool mouseMoving;
     [SerializeField] float sensX = 1000f;
     [SerializeField] float sensY = 1000f;
 
+    // Mouse rotation
     private float xRotation;
     private float yRotation;
 
@@ -31,11 +34,12 @@ public class PlayerCamera : MonoBehaviour
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
         float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
-        // Calculate and clamp mouse positions
+        // Calculate and clamp mouse positions. Make sure player can't look over -90 and 90 degrees
         yRotation += mouseX;
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
+        // When the mouse is visible, no player controls
         if (mouseMoving)
         {
             transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);

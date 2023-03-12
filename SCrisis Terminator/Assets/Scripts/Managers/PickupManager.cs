@@ -13,6 +13,7 @@ public class PickupManager : MonoBehaviour
         instance = this;
     }
 
+    // Setter for pickup and handling the object being picked up
     public void SetPickup(GameObject newPickup, bool status)
     {
         if (status) { pickup = newPickup; }

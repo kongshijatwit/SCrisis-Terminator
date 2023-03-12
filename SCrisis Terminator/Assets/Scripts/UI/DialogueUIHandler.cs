@@ -10,10 +10,12 @@ public class DialogueUIHandler : MonoBehaviour
     [SerializeField] private DialogueController dialogue;
     private Animator anim;
 
+    // Regular conversation dialogue fields
     [SerializeField] private GameObject dialogueCanvas;
     [SerializeField] private TextMeshProUGUI nameField;
     [SerializeField] private TextMeshProUGUI sentenceField;
 
+    // Choice selection fields
     [SerializeField] private GameObject choiceCanvas;
     [SerializeField] private Button buttonPrefab;
 
@@ -55,10 +57,13 @@ public class DialogueUIHandler : MonoBehaviour
 
     private void BuildChoiceList()
     {
+        // In case there are any Buttons lingering from previous interaction
         foreach(Transform t in choiceCanvas.transform)
         {
             Destroy(t.gameObject);
         }
+        
+        // Create new buttons
         foreach(DialogueElement node in dialogue.GetAllNodes())
         {
             Button choiceButton = Instantiate(buttonPrefab, choiceCanvas.transform);

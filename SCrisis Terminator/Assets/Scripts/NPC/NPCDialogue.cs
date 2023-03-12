@@ -22,6 +22,7 @@ public class NPCDialogue : MonoBehaviour, IRaycastable
 
     private void HandleDialogue(DialogueController dialogueController)
     {
+        // Conditions cover entering interaction, advancing interaction, and what happens after interaction
         if (!isConversing)
         {
             dialogueController.StartDialogue(rootDialogue);
