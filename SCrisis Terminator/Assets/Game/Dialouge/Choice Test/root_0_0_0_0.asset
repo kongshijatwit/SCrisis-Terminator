@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 975eab916a1b3a0498734eb5b282258f, type: 3}
-  m_Name: root_0_0
+  m_Name: root_0_0_0_0
   m_EditorClassIdentifier: 
-  name: Manager
-  sentence: I would like to hear this information so I can send over the medication.
+  name: Player
+  sentence: Sickle Cell patients need precise temperature control
   children:
-  - {fileID: 11400000, guid: b2fa34b1e94a22c4a807c2a7a0af6b2a, type: 2}
+  - {fileID: 11400000, guid: dc41a4d4158655340ac2d5d8902b486a, type: 2}

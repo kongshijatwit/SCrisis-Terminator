@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975eab916a1b3a0498734eb5b282258f, type: 3}
   m_Name: _root
   m_EditorClassIdentifier: 
-  name: NPC
-  sentence: We're testing dialogue but with choices
+  name: Manager
+  sentence: I hear you've got some information on Sickle Cell Anemia.
   children:
   - {fileID: 11400000, guid: 6084885e73adefc4da98b48d7df49598, type: 2}
-  - {fileID: 11400000, guid: 977371d075c8fa24ab978daff8f3a202, type: 2}
