@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Designates dialogue for the GameObject it is placed on
+/// </summary>
 public class NPCDialogue : MonoBehaviour, IRaycastable
 {
     [SerializeField] private DialogueElement rootDialogue;

@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Draws a raycast from the center of the screen
+/// Used to handle hovering over a specified object with the IRaycastable interface
+/// </summary>
 public class PlayerRaycast : MonoBehaviour
 {
     private readonly float rayDistance = 2f;

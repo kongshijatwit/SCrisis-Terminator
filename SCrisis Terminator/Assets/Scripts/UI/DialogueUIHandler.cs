@@ -2,6 +2,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+/// <summary>
+/// Handles the dialogue box being shown when interacting
+/// </summary>
 public class DialogueUIHandler : MonoBehaviour
 {
     [SerializeField] private DialogueController dialogue;

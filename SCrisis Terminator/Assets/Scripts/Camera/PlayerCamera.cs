@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// Attach to a camera to have it follow the target by its Transform
+/// Mostly to be used on the player
+/// </summary>
 public class PlayerCamera : MonoBehaviour
 {
     [SerializeField] private Transform player;

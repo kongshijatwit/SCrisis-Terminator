@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/// <summary>
+/// ScriptableObject for creating dialogue nodes
+/// Think of it as a tree data structure
+/// </summary>
 [CreateAssetMenu(fileName = "New Dialogue Node", menuName = "Dialogue Node", order = 1)]
 public class DialogueElement : ScriptableObject
 {

@@ -1,5 +1,8 @@
 using UnityEngine;
 
+/// <summary>
+/// Controls the player's movement using the old input system
+/// </summary>
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
