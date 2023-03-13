@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4513213755094956700}
   - component: {fileID: 4513213755094956701}
   m_Layer: 0
-  m_Name: Level Changer
+  m_Name: Scene Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

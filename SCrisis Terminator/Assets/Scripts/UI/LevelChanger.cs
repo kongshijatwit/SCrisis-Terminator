@@ -8,7 +8,6 @@ public class LevelChanger : MonoBehaviour
     private Animator animator;
     private string levelToLoad;
 
-    //Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
