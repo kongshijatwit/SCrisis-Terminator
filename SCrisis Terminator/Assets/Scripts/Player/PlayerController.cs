@@ -1,59 +1,52 @@
 using UnityEngine;
 
-/// <summary>
-/// Controls the player's movement using the old input system
-/// </summary>
+[RequireComponent(typeof(CharacterController))]
 public class PlayerController : MonoBehaviour
 {
-    private Rigidbody rb;
-    private DialogueController dc;
+    private CharacterController controller;
+    private DialogueController dialogueController;
+    private float speed = 5f;
+    private float gravity = 9.81f;
+    public bool canMove = true;
 
-    private readonly float speed = 700f;
-    private readonly float maxSpeed = 2.5f;
-
-    private float hInput;
-    private float vInput;
-
-    private void Start()
+    void Start()
     {
-        dc = GetComponent<DialogueController>();
-        rb = GetComponent<Rigidbody>();
-        dc.OnConversationStarted += StopMoving;
-        dc.OnConversationEnded += StartMoving;
-        rb.isKinematic = false;
+        controller = GetComponent<CharacterController>();
+        dialogueController = GetComponent<DialogueController>();
+
+        dialogueController.OnConversationStarted += StopMoving;
+        dialogueController.OnConversationEnded += StartMoving;
     }
 
     void Update()
     {
-        if (!rb.isKinematic)
-        {
-            hInput = Input.GetAxis("Horizontal");
-            vInput = Input.GetAxis("Vertical");
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        float clampX = Mathf.Clamp(rb.velocity.x, -maxSpeed, maxSpeed);
-        float clampZ = Mathf.Clamp(rb.velocity.z, -maxSpeed, maxSpeed);
+        float hInput = Input.GetAxis("Horizontal");
+        float vInput = Input.GetAxis("Vertical");
         Vector3 moveDir = gameObject.transform.forward * vInput + gameObject.transform.right * hInput;
-        rb.AddForce(speed * Time.fixedDeltaTime * moveDir);
-        rb.velocity = new(clampX, 0, clampZ);
-    }
-
-    private void StopMoving()
-    {
-        rb.isKinematic = true;
+        
+        if(!canMove)
+        {
+            controller.velocity.Set(0, 0, 0);
+            return;
+        }
+        controller.Move(moveDir * Time.deltaTime * speed);
+        controller.Move(Vector3.down * Time.deltaTime * gravity);
+        
     }
 
     private void StartMoving()
     {
-        rb.isKinematic = false;
+        canMove = true;
     }
 
-    private void OnDisable()
+    private void StopMoving()
     {
-        dc.OnConversationStarted -= StopMoving;
-        dc.OnConversationEnded -= StartMoving;
+        canMove = false;
+    }
+
+    private void OnDisable() 
+    {
+        dialogueController.OnConversationStarted -= StopMoving;
+        dialogueController.OnConversationEnded -= StartMoving;
     }
 }
