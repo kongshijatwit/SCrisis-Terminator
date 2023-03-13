@@ -1,38 +1,31 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-
 public class LevelChanger : MonoBehaviour
 {
-    public Button startButton;
-    public Animator animator;
-    // var takes string value and loads it into next level
+    [SerializeField] Button startButton;
+    private Animator animator;
     private string levelToLoad;
 
     //Start is called before the first frame update
     void Start()
     {
-        //Finds Start button and set listner to begin Fade Animations
-        startButton.onClick.AddListener( delegate {FadeToLevel("World"); });
-        
-    }
+        animator = GetComponent<Animator>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Set a listener to the start button to begin fade animation
+        startButton.onClick.AddListener(() => { FadeToLevel("World"); });
     }
 
     // Triggers Fadeout animations
-   public void FadeToLevel (string World) {
-        levelToLoad = World;
+    public void FadeToLevel(string world) 
+    {
+        levelToLoad = world;
         animator.SetTrigger("Fade out");
     }
-    //loads next level after fade has ended
-    public void OnFadeComplete(){
+
+    public void OnFadeComplete()
+    {
         SceneManager.LoadScene(levelToLoad);
     }
 }
