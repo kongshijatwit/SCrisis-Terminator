@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975eab916a1b3a0498734eb5b282258f, type: 3}
   m_Name: root_0_0_0_1_0
   m_EditorClassIdentifier: 
-  name: 
-  sentence: Unfinished wrong answer
-  children: []
+  name: Manager
+  sentence: That doesn't sound right. Look over your notes again.
+  children:
+  - {fileID: 11400000, guid: b2fa34b1e94a22c4a807c2a7a0af6b2a, type: 2}
