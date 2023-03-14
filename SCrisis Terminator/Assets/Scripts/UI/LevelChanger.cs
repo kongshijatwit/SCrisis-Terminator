@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class LevelChanger : MonoBehaviour
 {
-    [SerializeField] Button startButton;
+    [SerializeField] Button changeScene;
     private Animator animator;
     private string levelToLoad;
 
@@ -13,7 +13,7 @@ public class LevelChanger : MonoBehaviour
         animator = GetComponent<Animator>();
 
         // Set a listener to the start button to begin fade animation
-        startButton.onClick.AddListener(() => { FadeToLevel("World"); });
+        changeScene.onClick.AddListener(() => { FadeToLevel("World"); });
     }
 
     // Triggers Fadeout animations

@@ -789,17 +789,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1202330654 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4513213755094956701, guid: 8b38fe5c0987c7b4f889024daae37c6a, type: 3}
-  m_PrefabInstance: {fileID: 4513213756179572355}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: baa9eda4e98bc2842a96c24ab153d244, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1429815746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1671,19 +1660,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2087647731}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1202330654}
-        m_TargetAssemblyTypeName: LevelChanger, Assembly-CSharp
-        m_MethodName: FadeToLevel
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: World
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2087647731
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1749,6 +1726,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4513213755094956701, guid: 8b38fe5c0987c7b4f889024daae37c6a, type: 3}
+      propertyPath: changeScene
+      value: 
+      objectReference: {fileID: 2087647730}
     - target: {fileID: 4513213755094956701, guid: 8b38fe5c0987c7b4f889024daae37c6a, type: 3}
       propertyPath: startButton
       value: 
