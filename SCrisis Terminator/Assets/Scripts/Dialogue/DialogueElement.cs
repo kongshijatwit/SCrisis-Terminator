@@ -12,6 +12,13 @@ public class DialogueElement : ScriptableObject
     [SerializeField] private DialogueElement[] children;
 
     public string Name { get { return name; } }
-    public string Sentence { get { return sentence; } }
+    public string Sentence { get { return sentence; } set { sentence = value; } }
     public DialogueElement[] Children { get { return children; } }
+
+    public void Init(string name, string sentence, DialogueElement[] children)
+    {
+        this.name = name;
+        this.sentence = sentence;
+        this.children = children;
+    }
 }

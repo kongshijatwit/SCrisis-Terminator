@@ -1,28 +1,56 @@
 using UnityEngine;
 
-public class FetchDialogue : NPCDialogue
+public class FetchDialogue : MonoBehaviour, IRaycastable
 {
-    [SerializeField] private GameObject[] fetchObjects;
-    private GameObject givenObject;
+    // Dialogue Attributes
+    [SerializeField] private KeyCode interactionKey = KeyCode.E;
+    private DialogueElement rootDialogue;
+    private bool isConversing = false;
 
-    public override void HandleRaycast(PlayerRaycast player)
+    // Fetch Quest Attributes
+    [SerializeField] private GameObject[] fetchObjects;
+    private GameObject givenObject = null;
+    private int index = 0;
+
+    // No reason to set a constantly changing Dialogue ScriptableObject in the inspector
+    // so we create a Dialogue SO from code only
+    private void Start()
     {
-        var dialogueController = player.GetComponent<DialogueController>();
-        givenObject = PickupManager.instance.pickup;
-        if (Input.GetKeyDown(interactionKey) && !isConversing)
+        rootDialogue = ScriptableObject.CreateInstance<DialogueElement>();
+        rootDialogue.Init(gameObject.name, "", null);
+    }
+
+    public void HandleRaycast(PlayerRaycast player)
+    {
+        if (Input.GetKeyDown(interactionKey))
         {
-            dialogueController.StartDialogue(rootDialogue);
-            if (givenObject == fetchObjects[0]) dialogueController.AdvanceDialogue();
-            isConversing = true;
+            var dialogueController = player.GetComponent<DialogueController>();
+            givenObject = PickupManager.instance.pickup;
+            rootDialogue.Sentence = DetermineSentence();
+            if (!isConversing)
+            {
+                dialogueController.StartDialogue(rootDialogue);
+                isConversing = true;
+            }
+            else
+            {
+                dialogueController.EndDialogue();
+                isConversing = false;
+            }
         }
-        else if (Input.GetKeyDown(interactionKey) && !givenObject == fetchObjects[0])
+    }
+
+    private string DetermineSentence()
+    {
+        if (index > fetchObjects.Length - 1)
         {
-            dialogueController.EndDialogue();
-            isConversing = false;
+            return "Thanks for all your help. This will be all I need.";
         }
-        else
+        else if (givenObject == fetchObjects[index])
         {
-            base.HandleRaycast(player);
+            index++;
+            return "Thank you for bringing it to me.";
         }
+        return $"I need a {fetchObjects[index].name}.";
     }
 }
