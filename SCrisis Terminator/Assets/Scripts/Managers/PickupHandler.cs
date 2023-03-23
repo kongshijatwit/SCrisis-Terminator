@@ -1,19 +1,16 @@
 using UnityEngine;
 using System;
 
-public class PickupManager : MonoBehaviour
+/// <summary>
+/// Handles picking up and holding objects
+/// </summary>
+public class PickupHandler : MonoBehaviour
 {
-    public static PickupManager instance;
-    public GameObject pickup = null;
+    public GameObject pickup = null;  // Only public for testing
     public event Action UpdatePickup = delegate { };
 
-    private void Awake() 
-    {
-        instance = this;
-    }
-
     /// <summary>
-    /// Handles the picking up of GameObjects
+    /// Sets the current pickup to the new one depending on its status
     /// </summary>
     /// <param name="newPickup">Object to attempt picking up</param>
     /// <param name="status">Has the object already been picked up</param>
@@ -34,7 +31,7 @@ public class PickupManager : MonoBehaviour
             pickup = null;
             UpdatePickup();
         }
-        else{
+        else{  // else statement only here for debugging
             Debug.Log("Cannot pick up while already holding item");
         }
 

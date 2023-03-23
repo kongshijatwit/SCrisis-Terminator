@@ -3,7 +3,7 @@ using UnityEngine;
 public class CanPickup : MonoBehaviour, IRaycastable
 {
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
-    private bool status = false;
+    private bool hasBeenPickedUp = false;
 
     public void HandleRaycast(PlayerRaycast player)
     {
@@ -14,8 +14,8 @@ public class CanPickup : MonoBehaviour, IRaycastable
         // Pickup Logic
         if(Input.GetKeyDown(interactionKey))
         {
-            status = PickupManager.instance.SetPickup(gameObject, status);
-            gameObject.GetComponent<MeshRenderer>().enabled = !status;
+            hasBeenPickedUp = player.GetComponent<PickupHandler>().SetPickup(gameObject, hasBeenPickedUp);
+            gameObject.GetComponent<MeshRenderer>().enabled = !hasBeenPickedUp;
         }
     }
 }

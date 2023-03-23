@@ -25,7 +25,7 @@ public class FetchDialogue : MonoBehaviour, IRaycastable
         if (Input.GetKeyDown(interactionKey))
         {
             var dialogueController = player.GetComponent<DialogueController>();
-            givenObject = PickupManager.instance.pickup;
+            givenObject = player.GetComponent<PickupHandler>().pickup;
             rootDialogue.Sentence = DetermineSentence();
             if (!isConversing)
             {
@@ -42,15 +42,20 @@ public class FetchDialogue : MonoBehaviour, IRaycastable
 
     private string DetermineSentence()
     {
+        // If finished giving all objects in the array
         if (index > fetchObjects.Length - 1)
         {
             return "Thanks for all your help. This will be all I need.";
         }
+
+        // If presented correct object
         else if (givenObject == fetchObjects[index])
         {
             index++;
             return "Thank you for bringing it to me.";
         }
+
+        // All other cases
         return $"I need a {fetchObjects[index].name}.";
     }
 }
