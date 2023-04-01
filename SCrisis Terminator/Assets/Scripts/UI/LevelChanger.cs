@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class LevelChanger : MonoBehaviour
+public class LevelChanger : MonoBehaviour //Consider renaming to SceneChanger or SceneManager
 {
     [SerializeField] Button changeScene;
     [SerializeField] private string levelToLoad;

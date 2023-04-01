@@ -1,21 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIHandler : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
 
-    void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            var playerCamera = Camera.main.GetComponent<PlayerCamera>();
-            Camera.main.GetComponent<PlayerCamera>().enabled = !playerCamera.enabled;
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = !playerCamera.enabled;
+        if (Input.GetKeyDown(KeyCode.L)) TogglePauseMenu();
+    }
 
-            pauseMenu.SetActive(!playerCamera.enabled);
-        }
+    public void TogglePauseMenu() => pauseMenu.SetActive(MouseVisible());
+
+    // Return value depends cursor visibility
+    private bool MouseVisible()
+    {
+        var playerCamera = Camera.main.GetComponent<PlayerCamera>();
+        Camera.main.GetComponent<PlayerCamera>().enabled = !playerCamera.enabled;
+        Cursor.lockState = playerCamera.enabled ? CursorLockMode.Locked : CursorLockMode.None;
+        return Cursor.visible = !playerCamera.enabled;
     }
 }
