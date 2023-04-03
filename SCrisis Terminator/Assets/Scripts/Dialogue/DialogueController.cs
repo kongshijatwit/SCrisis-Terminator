@@ -77,5 +77,15 @@ public class DialogueController : MonoBehaviour
     public bool GetChoosingStatus() => isChoosing;
 	
     public bool GetTalkingStatus() => isTalking;
+
+    public DialogueElement GetLastNode(DialogueElement startNode)
+    {
+        if(startNode == null) return null;
+        while (startNode.Children.Length > 0)
+        {
+            startNode = startNode.Children[0];
+        }
+        return startNode;
+    }
     #endregion
 }

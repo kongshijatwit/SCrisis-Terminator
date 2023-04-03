@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InformationQuest : MonoBehaviour, IRaycastable
 {
     // Dialogue Attributes
-    [SerializeField] private DialogueElement currentDialogue;
+    [SerializeField] private DialogueElement questDialogue;
     [SerializeField] private DialogueElement questComplete;
-    [SerializeField] private DialogueElement secret;
-    private bool firstInteraction = true;
+    private DialogueElement currentDialogue = null;
     private bool isConversing = false;
     private KeyCode interactionKey = KeyCode.E;
 
     // Quest Attributes
+    private bool questInProgress = false;
     private int amountToComplete = 2;
-    private bool isQuestComplete = false;
+    private int remainingAmount;
+    private string helperSentence;
 
     public virtual void HandleRaycast(PlayerRaycast player)
     {
@@ -29,12 +28,15 @@ public class InformationQuest : MonoBehaviour, IRaycastable
 
     private void HandleInteraction(DialogueController dialogueController)
     {
+        if(!questInProgress) questInProgress = true;
+        currentDialogue = DetermineDialogue(dialogueController);
+        HandleConversation(dialogueController);
+    }
+
+    private void HandleConversation(DialogueController dialogueController)
+    {
         if (!isConversing)
         {
-            if (CheckCompletion() && firstInteraction) 
-            {
-                dialogueController.StartDialogue(secret);
-            }
             dialogueController.StartDialogue(currentDialogue);
             isConversing = true;
         }
@@ -48,8 +50,13 @@ public class InformationQuest : MonoBehaviour, IRaycastable
         }
     }
 
-    private bool CheckCompletion()
+    private DialogueElement DetermineDialogue(DialogueController dialogueController)
     {
-        return false;
+        if (CheckCompletion()) return questComplete;
+        helperSentence = $"*Looks like I have to talk to {amountToComplete - GameManager.instance.peopleSpokenTo} more people*";
+        dialogueController.GetLastNode(questDialogue).Sentence = helperSentence;
+        return questDialogue;
     }
+
+    private bool CheckCompletion() => GameManager.instance.peopleSpokenTo >= amountToComplete;
 }
