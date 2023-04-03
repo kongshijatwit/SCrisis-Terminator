@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1310831830602289479}
   - component: {fileID: 1310831830602289472}
   - component: {fileID: 7112286721758614500}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Quest Giver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -111,5 +111,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4300eddd5b962ac49ad79279ce36b81e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  questDialogue: {fileID: 0}
-  questComplete: {fileID: 0}
+  questDialogue: {fileID: 11400000, guid: 6908e24851ae5ca49ad6ec02757a175c, type: 2}
+  questComplete: {fileID: 11400000, guid: 2dc36fa00a6cc2a49ad79ba53c11f0a0, type: 2}
