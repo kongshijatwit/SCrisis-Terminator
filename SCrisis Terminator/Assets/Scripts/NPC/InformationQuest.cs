@@ -58,5 +58,5 @@ public class InformationQuest : MonoBehaviour, IRaycastable
         return questDialogue;
     }
 
-    private bool CheckCompletion() => GameManager.instance.peopleSpokenTo >= amountToComplete;
+    private bool CheckCompletion() => GameManager.instance.informationGathered >= amountToComplete;
 }
