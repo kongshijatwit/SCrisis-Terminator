@@ -53,7 +53,7 @@ public class InformationQuest : MonoBehaviour, IRaycastable
     private DialogueElement DetermineDialogue(DialogueController dialogueController)
     {
         if (CheckCompletion()) return questComplete;
-        helperSentence = $"*Looks like I have to talk to {amountToComplete - GameManager.instance.peopleSpokenTo} more people*";
+        helperSentence = $"*Looks like I have to talk to {amountToComplete - GameManager.instance.informationGathered} more people*";
         dialogueController.GetLastNode(questDialogue).Sentence = helperSentence;
         return questDialogue;
     }

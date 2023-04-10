@@ -9,7 +9,7 @@ public class PlayerCamera : MonoBehaviour
     // Player fields and offset to set camera position
     [SerializeField] private Transform player;
     private DialogueController dc;
-    private readonly Vector3 offset = new(0, 1f, 0);
+    private readonly Vector3 offset = new(0, 1.3f, 0);
 
     // Mouse movement and sensitivity
     private bool mouseMoving;
