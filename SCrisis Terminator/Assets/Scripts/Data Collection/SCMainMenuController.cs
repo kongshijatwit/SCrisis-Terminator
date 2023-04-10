@@ -1,36 +1,30 @@
-using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
+using System;
+using System.Text.RegularExpressions;
 
 public class SCMainMenuController : MonoBehaviour
 {
-    public GameObject Yes;
-    public GameObject No;
-    public GameObject Back;
-    public GameObject URL;
-    public GameObject TutorialButton;
-    public GameObject HubButton;
-    public GameObject Quit;
-    public GameObject StartButton;
+    
+
     // Start is called before the first frame update
     void Start() {
-    
-        
-
+   
     }
-
-    // Enables tracking
-    public void YesButtonClick()
+    public void URLButtonClick_1()
     {
-         SceneManager.LoadScene("LoginTracker");
+        Application.OpenURL("https://www.sparksicklecellchange.com/sickle-cell-genetics/history?msclkid=b48d293897ca12de18634d0bc97634ba");       
+        UnityEngine.Debug.Log("opened link");
     }
-
-    // Click Function to exit
-    public void QuitButtonClick()
+    public void URLButtononClick_2()
     {
-        Application.Quit();
+        Application.OpenURL("https://gbscda.org");
+        UnityEngine.Debug.Log("opened link");
     }
-
     // Update is called once per frame
     void Update()
     {
