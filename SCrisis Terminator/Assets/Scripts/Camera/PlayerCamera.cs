@@ -20,10 +20,11 @@ public class PlayerCamera : MonoBehaviour
     private float xRotation;
     private float yRotation;
 
-    private void Start()
+    // We are disabling and enabling this script a lot when bringing up the pause menu so we don't use Start()
+    private void OnEnable() 
     {
         dc = player.GetComponent<DialogueController>();
-        dc.OnConversationStarted += ShowMouse;
+        dc.OnConversationStarted += StopMouse;
         dc.OnConversationEnded += HideMouse;
         HideMouse();
     }
@@ -47,17 +48,17 @@ public class PlayerCamera : MonoBehaviour
         }
     }
 
-    // LateUpdate is usually synonomous with camera movement handling
+    // LateUpdate is usually synonomous with camera movement handling - Something about stuttering
     void LateUpdate() => transform.position = player.transform.position + offset;
 
     private void OnDisable()
     {
-        dc.OnConversationStarted -= ShowMouse;
+        dc.OnConversationStarted -= StopMouse;
         dc.OnConversationEnded -= HideMouse;
     }
 
     #region Helper Functions for Mouse States
-    private void ShowMouse()
+    private void StopMouse()
     {
         mouseMoving = false;
     }
@@ -69,9 +70,11 @@ public class PlayerCamera : MonoBehaviour
         mouseMoving = true;
     }
 
+#if UNITY_EDITOR
     private void OnApplicationFocus(bool focus)
     {
         if (focus) HideMouse();
     }
+#endif
     #endregion
 }
