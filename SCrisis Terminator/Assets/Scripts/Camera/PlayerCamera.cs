@@ -13,8 +13,8 @@ public class PlayerCamera : MonoBehaviour
 
     // Mouse movement and sensitivity
     private bool mouseMoving;
-    [SerializeField] float sensX = 1000f;
-    [SerializeField] float sensY = 1000f;
+    [SerializeField] float sensX = 200f;
+    [SerializeField] float sensY = 200f;
 
     // Mouse rotation
     private float xRotation;
