@@ -6,6 +6,7 @@ using UnityEngine;
 /// </summary>
 public class PlayerRaycast : MonoBehaviour
 {
+    [SerializeField] private InteractionPromptUI _InteractionPromptUI;
     private readonly float rayDistance = 2f;
 
     void Update()
@@ -14,7 +15,14 @@ public class PlayerRaycast : MonoBehaviour
         Vector3 direction = Camera.main.transform.forward;
         if (Physics.Raycast(origin, direction, out RaycastHit hit, rayDistance, LayerMask.GetMask("Interactable")))
         {
+            // Everything that happens when the raycast hits something
             hit.transform.GetComponent<IRaycastable>().HandleRaycast(this);
+            if (!_InteractionPromptUI.IsDisplayed) _InteractionPromptUI.SetUp(hit.transform.GetComponent<Iinteractable>().InteractionPrompt);
+        }
+        else
+        {
+            // Everything that happens when the raycast no long hits anything
+            _InteractionPromptUI.Close();
         }
 
         // Draws a ray in the scene view - remember to turn on gizmos

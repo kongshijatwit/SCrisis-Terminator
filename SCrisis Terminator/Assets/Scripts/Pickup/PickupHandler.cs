@@ -6,7 +6,7 @@ using System;
 /// </summary>
 public class PickupHandler : MonoBehaviour
 {
-    public GameObject pickup = null;  // Only public for testing
+    public GameObject pickup = null;  // <- Only public to debug, set to private when finished
     public event Action UpdatePickup = delegate { };
 
     /// <summary>
