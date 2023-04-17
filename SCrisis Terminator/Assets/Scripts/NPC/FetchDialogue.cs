@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class FetchDialogue : MonoBehaviour, IRaycastable
 {
+    // NPC Attributes
+    public string interactionPrompt;
+    public string InteractionPrompt => interactionPrompt;
+
     // Dialogue Attributes
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
     private DialogueElement rootDialogue;
@@ -11,6 +15,7 @@ public class FetchDialogue : MonoBehaviour, IRaycastable
     [SerializeField] private GameObject[] fetchObjects;
     private GameObject givenObject = null;
     private int index = 0;
+
 
     // No reason to set a constantly changing Dialogue ScriptableObject in the inspector
     // so we create a Dialogue SO from code only

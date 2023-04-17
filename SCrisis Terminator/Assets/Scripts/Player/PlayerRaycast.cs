@@ -17,7 +17,7 @@ public class PlayerRaycast : MonoBehaviour
         {
             // Everything that happens when the raycast hits something
             hit.transform.GetComponent<IRaycastable>().HandleRaycast(this);
-            if (!_InteractionPromptUI.IsDisplayed) _InteractionPromptUI.SetUp(hit.transform.GetComponent<Iinteractable>().InteractionPrompt);
+            if (!_InteractionPromptUI.IsDisplayed) _InteractionPromptUI.SetUp(hit.transform.GetComponent<IRaycastable>().InteractionPrompt);
         }
         else
         {

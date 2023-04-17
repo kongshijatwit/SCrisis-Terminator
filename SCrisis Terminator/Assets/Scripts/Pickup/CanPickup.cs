@@ -3,7 +3,10 @@ using UnityEngine;
 public class CanPickup : MonoBehaviour, IRaycastable
 {
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
+    [SerializeField] private string interactionPrompt;
+    public string InteractionPrompt => throw new System.NotImplementedException();
     private bool hasBeenPickedUp = false;
+
 
     public void HandleRaycast(PlayerRaycast player)
     {

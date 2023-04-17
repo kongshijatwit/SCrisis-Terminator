@@ -2,13 +2,17 @@ using UnityEngine;
 
 public class InformationQuest : MonoBehaviour, IRaycastable
 {
+    // NPC Attributes
+    private KeyCode interactionKey = KeyCode.E;
+    public string interactionPrompt;
+    public string InteractionPrompt => interactionPrompt;
+
     // Dialogue Attributes
     [SerializeField] private DialogueElement questDialogue;
     [SerializeField] private DialogueElement questComplete;
     private DialogueElement currentDialogue = null;
     private bool isConversing = false;
-    private KeyCode interactionKey = KeyCode.E;
-
+    
     // Quest Attributes
     private bool questInProgress = false;
     private int amountToComplete = 2;
@@ -17,11 +21,6 @@ public class InformationQuest : MonoBehaviour, IRaycastable
 
     public virtual void HandleRaycast(PlayerRaycast player)
     {
-        // Show tooltip
-        Debug.Log($"Display: Press {interactionKey} to speak");
-
-
-        // Dialogue
         var dialogueController = player.GetComponent<DialogueController>();
         if (Input.GetKeyDown(interactionKey)) HandleInteraction(dialogueController);
     }

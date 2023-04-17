@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Door : MonoBehaviour, Iinteractable
 {
-    
   [SerializeField] private string _prompt;
-
   public string InteractionPrompt => _prompt;
 
   public bool Interact(Interactor interactor)
@@ -14,6 +12,4 @@ public class Door : MonoBehaviour, Iinteractable
       Debug.Log("Opening door!");
       return true;
   }
-        
-    
 }
