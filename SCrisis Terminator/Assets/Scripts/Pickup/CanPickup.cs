@@ -4,7 +4,7 @@ public class CanPickup : MonoBehaviour, IRaycastable
 {
     [SerializeField] private KeyCode interactionKey = KeyCode.E;
     [SerializeField] private string interactionPrompt;
-    public string InteractionPrompt => throw new System.NotImplementedException();
+    public string InteractionPrompt => interactionPrompt;
     private bool hasBeenPickedUp = false;
 
 
